@@ -1,0 +1,232 @@
+[
+  {
+    "name": "Web Development Fundamentals",
+    "instructor": "John Doe",
+    "description": "Learn the basics of web development and build your first website.",
+    "enrollmentStatus": "Open",
+    "thumbnail": "your.image.here",
+    "duration": "8 weeks",
+    "schedule": "Tuesdays and Thursdays, 6:00 PM - 8:00 PM",
+    "location": "Online",
+    "prerequisites": ["None"],
+    "syllabus": [
+      {
+        "week": 1,
+        "topic": "Introduction to HTML",
+        "content": "Basic HTML tags and document structure."
+      },
+      {
+        "week": 2,
+        "topic": "Styling with CSS",
+        "content": "CSS selectors, properties, and layout."
+      }
+    ]
+  },
+  {
+    "name": "Data Science for Beginners",
+    "instructor": "Jane Smith",
+    "description": "Explore the fundamentals of data science and gain hands-on experience with Python.",
+    "enrollmentStatus": "Open",
+    "thumbnail": "your.image.here",
+    "duration": "10 weeks",
+    "schedule": "Mondays and Wednesdays, 7:00 PM - 9:00 PM",
+    "location": "In-person",
+    "prerequisites": ["None"],
+    "syllabus": [
+      {
+        "week": 1,
+        "topic": "Introduction to Data Science",
+        "content": "Overview of data science, role of a data scientist."
+      },
+      {
+        "week": 2,
+        "topic": "Data Analysis with Python",
+        "content": "Using Python for data analysis and visualization."
+      }
+    ]
+  },
+  {
+    "name": "Full Stack Web Development Bootcamp",
+    "instructor": "Eva Rodriguez",
+    "description": "A comprehensive bootcamp covering front-end and back-end web development.",
+    "enrollmentStatus": "Open",
+    "thumbnail": "your.image.here",
+    "duration": "12 weeks",
+    "schedule": "Tuesdays and Thursdays, 6:30 PM - 8:30 PM",
+    "location": "Online",
+    "prerequisites": ["Basic programming knowledge"],
+    "syllabus": [
+      {
+        "week": 1,
+        "topic": "Introduction to HTML",
+        "content": "Basic HTML tags and document structure."
+      },
+      {
+        "week": 2,
+        "topic": "Node.js and Express.js",
+        "content": "Building server-side applications with Node.js and Express.js."
+      }
+    ]
+  },
+  {
+    "name": "Machine Learning Fundamentals",
+    "instructor": "Michael Wang",
+    "description": "An introduction to machine learning algorithms and applications.",
+    "enrollmentStatus": "Open",
+    "thumbnail": "your.image.here",
+    "duration": "10 weeks",
+    "schedule": "Wednesdays and Fridays, 7:00 PM - 9:00 PM",
+    "location": "In-person",
+    "prerequisites": ["Basic understanding of programming"],
+    "syllabus": [
+      {
+        "week": 1,
+        "topic": "Introduction to Machine Learning",
+        "content": "Overview of machine learning concepts and applications."
+      },
+      {
+        "week": 2,
+        "topic": "Supervised Learning",
+        "content": "Classification and regression algorithms."
+      }
+    ]
+  },
+  {
+    "name": "Mobile App Design Principles",
+    "instructor": "Olivia Davis",
+    "description": "Learn the principles of mobile app design and user experience.",
+    "enrollmentStatus": "Open",
+    "thumbnail": "your.image.here",
+    "duration": "8 weeks",
+    "schedule": "Mondays and Thursdays, 6:30 PM - 8:30 PM",
+    "location": "Online",
+    "prerequisites": ["Basic design principles"],
+    "syllabus": [
+      {
+        "week": 1,
+        "topic": "Introduction to Mobile Design",
+        "content": "Fundamental principles of designing for mobile."
+      },
+      {
+        "week": 2,
+        "topic": "User Interface Design",
+        "content": "Creating effective and user-friendly interfaces."
+      }
+    ]
+  },
+  {
+    "name": "Advanced JavaScript Frameworks",
+    "instructor": "Daniel Turner",
+    "description": "Explore advanced concepts in popular JavaScript frameworks.",
+    "enrollmentStatus": "Open",
+    "thumbnail": "your.image.here",
+    "duration": "10 weeks",
+    "schedule": "Tuesdays and Fridays, 7:00 PM - 9:00 PM",
+    "location": "In-person",
+    "prerequisites": ["Intermediate JavaScript knowledge"],
+    "syllabus": [
+      {
+        "week": 1,
+        "topic": "Introduction to JavaScript Frameworks",
+        "content": "Overview of popular frameworks."
+      },
+      {
+        "week": 2,
+        "topic": "React Fundamentals",
+        "content": "Building web applications with React."
+      }
+    ]
+  },
+  {
+    "name": "Python for Data Science and Analysis",
+    "instructor": "Sophia Martinez",
+    "description": "Learn Python for data analysis and gain insights into data science techniques.",
+    "enrollmentStatus": "Open",
+    "thumbnail": "your.image.here",
+    "duration": "8 weeks",
+    "schedule": "Wednesdays and Saturdays, 6:30 PM - 8:30 PM",
+    "location": "Online",
+    "prerequisites": ["None"],
+    "syllabus": [
+      {
+        "week": 1,
+        "topic": "Introduction to Python",
+        "content": "Basics of Python programming language."
+      },
+      {
+        "week": 2,
+        "topic": "Data Analysis with Pandas",
+        "content": "Working with data using the Pandas library."
+      }
+    ]
+  },
+  {
+    "name": "Cybersecurity Fundamentals",
+    "instructor": "William Turner",
+    "description": "An introduction to cybersecurity concepts and best practices.",
+    "enrollmentStatus": "Open",
+    "thumbnail": "your.image.here",
+    "duration": "12 weeks",
+    "schedule": "Mondays and Thursdays, 7:00 PM - 9:00 PM",
+    "location": "In-person",
+    "prerequisites": ["Basic computer knowledge"],
+    "syllabus": [
+      {
+        "week": 1,
+        "topic": "Introduction to Cybersecurity",
+        "content": "Overview of cybersecurity threats and defenses."
+      },
+      {
+        "week": 2,
+        "topic": "Network Security",
+        "content": "Securing computer networks and data."
+      }
+    ]
+  },
+  {
+    "name": "UX/UI Design Principles",
+    "instructor": "Emma Davis",
+    "description": "Explore user experience and user interface design principles for digital products.",
+    "enrollmentStatus": "Open",
+    "thumbnail": "your.image.here",
+    "duration": "8 weeks",
+    "schedule": "Tuesdays and Fridays, 6:00 PM - 8:00 PM",
+    "location": "Online",
+    "prerequisites": ["Basic design knowledge"],
+    "syllabus": [
+      {
+        "week": 1,
+        "topic": "Introduction to UX/UI Design",
+        "content": "Fundamentals of user-centered design."
+      },
+      {
+        "week": 2,
+        "topic": "Wireframing and Prototyping",
+        "content": "Creating wireframes and interactive prototypes."
+      }
+    ]
+  },
+  {
+    "name": "Blockchain Basics",
+    "instructor": "Benjamin Turner",
+    "description": "Introduction to the fundamental concepts of blockchain technology.",
+    "enrollmentStatus": "Open",
+    "thumbnail": "your.image.here",
+    "duration": "10 weeks",
+    "schedule": "Wednesdays and Saturdays, 7:00 PM - 9:00 PM",
+    "location": "In-person",
+    "prerequisites": ["Basic understanding of cryptography"],
+    "syllabus": [
+      {
+        "week": 1,
+        "topic": "Overview of Blockchain Technology",
+        "content": "Introduction to the fundamental concepts of blockchain."
+      },
+      {
+        "week": 2,
+        "topic": "Cryptocurrencies and Smart Contracts",
+        "content": "Understanding cryptocurrencies and creating smart contracts."
+      }
+    ]
+  }
+]
