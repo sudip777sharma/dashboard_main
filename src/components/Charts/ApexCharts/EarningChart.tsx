@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import ReactApexChart from "react-apexcharts";
+// import ReactApexChart from "react-apexcharts";
 
 import dynamic from "next/dynamic";
+import { type ApexOptions } from "apexcharts";
 
 const ApexChartNoSSR = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
 
 const EarningChart = () => {
-  const [chartData, setChartData] = useState({
+  const [chartData] = useState({
     series: [
       {
         name: "Earning",
@@ -94,7 +95,7 @@ const EarningChart = () => {
         },
         labels: {
           show: false,
-          formatter: function (val) {
+          formatter: function (val: number) {
             return val + "%";
           },
         },
@@ -109,7 +110,7 @@ const EarningChart = () => {
   return (
     <div id="chart">
       <ApexChartNoSSR
-        options={chartData.options}
+        options={chartData.options as ApexOptions}
         series={chartData.series}
         type="bar"
         height={"150%"}

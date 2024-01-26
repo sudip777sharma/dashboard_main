@@ -75,13 +75,12 @@ const LineChart: React.FC = () => {
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const svgRef = useRef(null);
   const listeningRectRef = useRef(null);
-  const ttWrapperRef = useRef<HTMLDivElement | null>(null);
 
   const dimensions = useResizeObserver(wrapperRef);
   const width = dimensions?.width;
   const height = dimensions?.height;
 
-  const [margin, setMargin] = useState({
+  const [margin] = useState({
     left: 40,
     right: 20,
     top: 20,
@@ -102,7 +101,7 @@ const LineChart: React.FC = () => {
     makeDataset(dataX2, dataY2),
     makeDataset(dataX3, dataY3),
   ]);
-  const [tick, setTick] = useState({
+  const [tick] = useState({
     x: { count: 15, step: 10 },
     y: { count: 5, step: 100 },
   });
@@ -113,7 +112,7 @@ const LineChart: React.FC = () => {
   const [xScaleDomain, setXScaleDomain] = useState<[number, number]>(
     d3.extent(xValues) as [number, number]
   );
-  const [yScaleDomain, setYScaleDomain] = useState<[number, number]>(
+  const [yScaleDomain] = useState<[number, number]>(
     d3.extent(yValues) as [number, number]
   );
 
@@ -162,7 +161,7 @@ const LineChart: React.FC = () => {
     .zoom()
     .scaleExtent([1, 32])
     .on("zoom", () => {
-      const zoomState = d3.zoomTransform(listeningRectSvg.node());
+      const zoomState = d3.zoomTransform(listeningRectSvg.node()!);
       const xPos = zoomState.rescaleX(xScale)(dataPoint[0]);
       const yPos = yScale(dataPoint[1]);
       setTooltipData((prev) => {
@@ -177,7 +176,7 @@ const LineChart: React.FC = () => {
       [width, height],
     ]);
   }
-  listeningRectSvg.call(zoomBehaviour);
+  // listeningRectSvg.call(zoomBehaviour);
   const handleOnMouseMove = (
     event: React.MouseEvent<SVGRectElement, MouseEvent>
   ) => {
@@ -213,7 +212,7 @@ const LineChart: React.FC = () => {
         <p>Commercial networks and enterprises</p>
       </div>
       <div className="cursor-pointer">
-        <div className="flex flex-col md:flex-row justify-end">
+        <div className="flex flex-col justify-end md:flex-row">
           <div className="flex gap-2 p-1">
             <button
               onClick={() => {
@@ -231,7 +230,7 @@ const LineChart: React.FC = () => {
                   return na;
                 });
               }}
-              className="p-2 rounded-lg bg-white/10 text-xs font-semibold text-white no-underline transition hover:bg-white/20"
+              className="rounded-lg bg-white/10 p-2 text-xs font-semibold text-white no-underline transition hover:bg-white/20"
             >
               Add Data
             </button>
@@ -242,7 +241,7 @@ const LineChart: React.FC = () => {
                 setIsDatasetVisible((prev) => [...prev, true]);
                 setDatasets((prev) => [...prev, generateRandomDataset(17)]);
               }}
-              className="p-2 rounded-lg bg-white/10 text-xs font-semibold text-white no-underline transition hover:bg-white/20"
+              className="rounded-lg bg-white/10 p-2 text-xs font-semibold text-white no-underline transition hover:bg-white/20"
             >
               Add Dataset
             </button>

@@ -1,4 +1,4 @@
-import React, { createContext, useMemo, useState } from "react";
+import React, { createContext, useState } from "react";
 
 type PopupBoxContextType = {
     isPopupBoxOpen: boolean;

@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { de } from "date-fns/locale";
-import { format, parseISO } from "date-fns";
 import "chartjs-adapter-date-fns";
 
-import Datepicker from "react-tailwindcss-datepicker";
+import Datepicker, { type DateValueType } from "react-tailwindcss-datepicker";
 
 import { Bar } from "react-chartjs-2";
 import {
@@ -11,20 +9,25 @@ import {
   Tooltip,
   Legend,
   BarElement,
+  LinearScale,
   CategoryScale,
   type ChartOptions,
 } from "chart.js";
 
-ChartJs.register(BarElement, CategoryScale, Tooltip, Legend);
+ChartJs.register(BarElement, LinearScale, CategoryScale, Tooltip, Legend);
 
-const HorizontalBarChart2: React.FC = () => {
-  const [value, setValue] = useState({
+const HorizontalBarChart: React.FC = () => {
+  const [value, setValue] = useState<DateValueType>({
     startDate: new Date(),
     endDate: new Date(),
   });
 
-  const handleValueChange = (newValue) => {
-    setValue(newValue);
+  const handleValueChange = (
+    value: DateValueType,
+  ) => {
+    if (value !== null && typeof value !== "undefined") {
+      setValue(value);
+    }
   };
 
   const data = {
@@ -33,44 +36,55 @@ const HorizontalBarChart2: React.FC = () => {
       {
         label: "Market Data",
         data: [710, 350, 580, 460, 120],
-        backgroundColor: "#07B8D0",
+        backgroundColor: "#FFBD1F",
         borderWidth: 0,
         borderRadius: 10,
         barPercentage: 0.6,
-        categoryPercentage: 0.5,
+        categoryPercentage: 0.7,
+        pointRadius: 1,
+        fill: "start",
+      },
+      {
+        label: "Personal Data",
+        data: [430, 590, 510, 240, 360],
+        backgroundColor: "#26C6DA",
+        borderWidth: 0,
+        borderRadius: 10,
+        barPercentage: 0.6,
+        categoryPercentage: 0.7,
         pointRadius: 1,
         fill: "start",
       },
     ],
   };
-  const options: ChartOptions = {
+  const options: ChartOptions<"bar"> = {
     indexAxis: "y",
     responsive: true,
     maintainAspectRatio: false,
-    adapters: {
-      date: {
-        locale: de,
-      },
-    },
     scales: {
       x: {
         ticks: {
           color: "#9196b2",
         },
         grid: {
-          display: false,
+          color: "#646880",
         },
         beginAtZero: true,
       },
       y: {
         grid: {
-          color: "#646880",
+          display: false,
         },
       },
     },
     plugins: {
       legend: {
-        display: false,
+        labels: {
+          color: "white",
+          padding: 30,
+        },
+        position: "top",
+        align: "end",
       },
     },
   };
@@ -101,4 +115,4 @@ const HorizontalBarChart2: React.FC = () => {
   );
 };
 
-export default HorizontalBarChart2;
+export default HorizontalBarChart;

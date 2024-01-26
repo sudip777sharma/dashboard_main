@@ -1,8 +1,9 @@
 import React from "react";
-import ReactApexChart from "react-apexcharts";
+// import ReactApexChart from "react-apexcharts";
+
+import {type ApexOptions } from "apexcharts";
 
 import dynamic from "next/dynamic"; // Import dynamic from next/dynamic
-
 const ApexChartNoSSR = dynamic(() => import("react-apexcharts"), {
   ssr: false, // Set ssr to false to ensure it only renders on the client-side
 });
@@ -159,7 +160,7 @@ const HeatmapChart = () => {
       </div>
       <div className="h-[70vh] w-full flex-col items-center justify-center p-1 md:p-4">
         <ApexChartNoSSR
-          options={options}
+          options={options as ApexOptions}
           series={series}
           type="heatmap"
           className="h-full w-full"

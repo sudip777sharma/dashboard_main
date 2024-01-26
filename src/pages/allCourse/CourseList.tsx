@@ -30,13 +30,11 @@ const CourseList = () => {
   const { data: sessionData } = useSession();
   const utils = api.useContext();
   const [courseSearchTerm, setCourseSearchTerm] = useState("");
-  const [courseDataArray, setCourseDataArray] = useState<Course[]>(courseData);
+  const [] = useState<Course[]>(courseData);
 
   const {
     data: allCourseData,
     isLoading,
-    isError,
-    error,
   } = api.courseListData.getAllCourseListData.useQuery();
   console.log("allCourseData: ", allCourseData);
   const enrollCourse = api.courseListData.enrollCourseByUser.useMutation({
@@ -45,17 +43,6 @@ const CourseList = () => {
       await utils.courseListData.getAllCourseListData.invalidate();
     },
   });
-  const addNewCourseDataArray =
-    api.courseListData.addCourseDataArray.useMutation({
-      onSettled: async () => {
-        console.log("data added to db successfully.");
-        await utils.courseListData.getAllCourseListData.invalidate();
-      },
-    });
-  const handleUploadCourseListData = () => {
-    console.log("courseDataArray: ", courseDataArray);
-    addNewCourseDataArray.mutate(courseDataArray);
-  };
   const handleSearch = (searchTerm: string) => {
     // console.log(searchTerm);
     setCourseSearchTerm(searchTerm);

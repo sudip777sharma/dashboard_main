@@ -4,6 +4,7 @@ import {
   RadialLinearScale,
   PointElement,
   LineElement,
+  LinearScale,
   Filler,
   Tooltip,
   Legend,
@@ -12,6 +13,7 @@ import { Radar } from "react-chartjs-2";
 
 ChartJS.register(
   RadialLinearScale,
+  LinearScale,
   PointElement,
   LineElement,
   Filler,

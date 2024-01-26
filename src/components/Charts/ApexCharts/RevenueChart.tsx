@@ -1,8 +1,9 @@
 // components/RevenueChart.tsx
 import React from "react";
-import ReactApexChart from "react-apexcharts";
+// import ReactApexChart from "react-apexcharts";
 
 import dynamic from "next/dynamic"; // Import dynamic from next/dynamic
+import { type ApexOptions } from "apexcharts";
 
 const ApexChartNoSSR = dynamic(() => import("react-apexcharts"), {
   ssr: false, // Set ssr to false to ensure it only renders on the client-side
@@ -16,7 +17,7 @@ const RevenueChart: React.FC = () => {
     },
   ];
 
-  const options = {
+  const options: ApexOptions = {
     chart: {
       type: "area",
       toolbar: {
@@ -45,7 +46,7 @@ const RevenueChart: React.FC = () => {
     grid: {
       show: false, // Hide both x and y-axis grid lines
     },
-    maintainAspectRatio: false,
+    // maintainAspectRatio: false,
     fill: {
       type: "gradient",
       colors: ["#28C66F"], // Set the fill color to #28C66F

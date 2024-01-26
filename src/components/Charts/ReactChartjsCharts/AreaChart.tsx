@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Line } from "react-chartjs-2";
-import { de } from "date-fns/locale";
-import { format, parseISO } from "date-fns";
+// import { de } from "date-fns/locale";
+// import { format, parseISO } from "date-fns";
 import "chartjs-adapter-date-fns";
 
-import Datepicker from "react-tailwindcss-datepicker";
+import Datepicker, { type DateValueType } from "react-tailwindcss-datepicker";
 
 import {
   Chart as ChartJS,
@@ -19,14 +19,21 @@ import {
 ChartJS.register(LinearScale, PointElement, Tooltip, Legend, TimeScale);
 
 const AreaChart: React.FC = () => {
-  const [value, setValue] = useState({
+  const [value, setValue] = useState<DateValueType>({
     startDate: new Date(),
     endDate: new Date(),
   });
 
-  const handleValueChange = (newValue: React.SetStateAction<{ startDate: Date; endDate: Date; }>) => {
-    console.log("newValue:", newValue);
-    setValue(newValue);
+  // const handleValueChange = (newValue: React.SetStateAction<{ startDate: Date; endDate: Date; }>) => {
+  //   console.log("newValue:", newValue);
+  //   setValue(newValue);
+  // };
+  const handleValueChange = (
+    value: DateValueType,
+  ) => {
+    if (value !== null && typeof value !== "undefined") {
+      setValue(value);
+    }
   };
 
   const data = {
@@ -105,14 +112,14 @@ const AreaChart: React.FC = () => {
       },
     ],
   };
-  const options: ChartOptions = {
+  const options: ChartOptions<"line"> = {
     responsive: true,
     maintainAspectRatio: false,
-    adapters: {
-      date: {
-        locale: de,
-      },
-    },
+    // adapters: {
+    //   date: {
+    //     locale: de,
+    //   },
+    // },
     scales: {
       x: {
         type: "time",
@@ -120,19 +127,19 @@ const AreaChart: React.FC = () => {
         max: "2023-12-21",
         time: {
           unit: "day",
-          parser: (value: string) => {
-            return parseISO(value);
-          },
-          tooltipFormat: "dd/MM",
-          formatter: (time: number | Date) => {
-            // Custom formatting using date-fns
-            return format(time, "dd/MM");
-          },
+          // parser: (value: string) => {
+          //   return parseISO(value);
+          // },
+          // tooltipFormat: "dd/MM",
+          // formatter: (time: number | Date) => {
+          //   // Custom formatting using date-fns
+          //   return format(time, "dd/MM");
+          // },
         },
         position: "bottom",
         ticks: {
           color: "#9196b2",
-          callback: (value, index, values) => {
+          callback: (value) => {
             // Custom label formatting using date-fns with "/" separator
             const date = new Date(value);
             const day = date.getDate().toString();
@@ -144,7 +151,7 @@ const AreaChart: React.FC = () => {
           color: "#646880",
           display: false,
         },
-        beginAtZero: true,
+        // beginAtZero: true,
       },
       y: {
         min: 0,

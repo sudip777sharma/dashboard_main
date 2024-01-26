@@ -1,31 +1,32 @@
-import { useState, useEffect, useRef } from 'react';
-import flatpickr from 'flatpickr';
-import 'flatpickr/dist/flatpickr.min.css';
-
+import { useState, useEffect, useRef } from "react";
+import flatpickr from "flatpickr";
+import "flatpickr/dist/flatpickr.min.css";
 
 const MyDatePicker: React.FC = () => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const datePickerRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    const datePicker = flatpickr(datePickerRef.current, {
-      dateFormat: 'Y-m-d',
-      defaultDate: selectedDate, // Set the default date to today
-      onChange: (selectedDates: Date[]) => {
-        setSelectedDate(selectedDates[0] || null);
-      },
-    });
+    if (datePickerRef?.current) {
+      const datePicker = flatpickr(datePickerRef?.current, {
+        dateFormat: "Y-m-d",
+        defaultDate: new Date(), // selectedDate as Date, // Explicitly cast to Date
+        onChange: (selectedDates: Date[]) => {
+          setSelectedDate(selectedDates[0] ?? null);
+        },
+      });
 
-    return () => {
-      // Cleanup Flatpickr instance on unmount
-      datePicker.destroy();
-    };
-  }, []); // Run this effect only once on mount
+      return () => {
+        // Cleanup Flatpickr instance on unmount
+        datePicker.destroy();
+      };
+    }
+  }, [datePickerRef, selectedDate]); // Include selectedDate in the dependency array
 
   return (
     <div>
       <input
-        className=''
+        className=""
         type="text"
         ref={datePickerRef}
         placeholder="Select date"

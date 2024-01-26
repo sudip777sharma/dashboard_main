@@ -25,7 +25,7 @@ const PopupBoxTemplate = ({ children }: props) => {
     return () => {
       document.removeEventListener("keydown", handleEscKey);
     };
-  }, []);
+  }, [popupBoxContext]);
   return (
     <div
       onClick={(e) => onClickOutsideSearchPanel(e)}

@@ -1,6 +1,7 @@
 import React from "react";
 
 import dynamic from "next/dynamic"; // Import dynamic from next/dynamic
+import {type ApexOptions } from "apexcharts";
 
 const ApexChartNoSSR = dynamic(() => import("react-apexcharts"), {
   ssr: false, // Set ssr to false to ensure it only renders on the client-side
@@ -12,7 +13,7 @@ const DonutChart = () => {
     const average = total / series.length;
     return average.toFixed(2) + "%"; // Round to 2 decimal places
   };
-  const options = {
+  const options: ApexOptions = {
     plotOptions: {
       pie: {
         donut: {
@@ -35,7 +36,7 @@ const DonutChart = () => {
       type: "donut",
     },
     stroke: {
-      colors: "transparent",
+      colors: ["transparent"],
     },
     legend: {
       position: "bottom",

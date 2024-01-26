@@ -10,14 +10,12 @@ import SidebarTemplate from "~/components/SidebarTemplate";
 import Sidebar from "~/components/Sidebar";
 import PopupBoxTemplate from "~/components/PopupBoxTemplate";
 import SearchPanel from "~/components/SearchPanel";
-import { useContext } from "react";
-import { ThemeContext, ThemeContextProvider } from "~/contexts/ThemeContext";
+import { ThemeContextProvider } from "~/contexts/ThemeContext";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
   pageProps: { session, ...pageProps },
 }) => {
-  const themeContext = useContext(ThemeContext);
   return (
     <ThemeContextProvider>
       <div

@@ -1,22 +1,14 @@
 import React from "react";
-import AreaChart from "~/components/Charts/AreaChart";
-import AreaChart2 from "~/components/Charts/AreaChart2";
-import BubbleChart from "~/components/Charts/BubbleChart";
-import CandleStickChart from "~/components/Charts/CandleStickChart";
-import DonutChart from "~/components/Charts/DonutChart";
-import HeatmapChart from "~/components/Charts/HeatMapChart";
-import HorizontalBarChart from "~/components/Charts/HorizontalBarChart";
-import HorizontalBarChart2 from "~/components/Charts/HorizontalBarChart2";
-import LineChart from "~/components/Charts/LineChart";
-import LineChart2 from "~/components/Charts/LineChart2";
-import PolarChart from "~/components/Charts/PolarChart";
-import RadarChart from "~/components/Charts/RadarChart";
-import RadarChart2 from "~/components/Charts/RadarChart2";
-import RadialBarChart from "~/components/Charts/RadialBarChart";
-import ScatterChart from "~/components/Charts/ScatterChart";
-import ScatterChart2 from "~/components/Charts/ScatterChart2";
-import StackedBarChart from "~/components/Charts/StackedBarChart";
-import VerticalBarChart from "~/components/Charts/VerticalBarChart";
+import AreaChart2 from "~/components/Charts/ApexCharts/AreaChart2";
+import CandleStickChart from "~/components/Charts/ApexCharts/CandleStickChart";
+import DonutChart from "~/components/Charts/ApexCharts/DonutChart";
+import HeatmapChart from "~/components/Charts/ApexCharts/HeatMapChart";
+import HorizontalBarChart2 from "~/components/Charts/ReactChartjsCharts/HorizontalBarChart2";
+import LineChart2 from "~/components/Charts/ApexCharts/LineChart2";
+import RadarChart2 from "~/components/Charts/ApexCharts/RadarChart2";
+import RadialBarChart from "~/components/Charts/ApexCharts/RadialBarChart";
+import ScatterChart2 from "~/components/Charts/ApexCharts/ScatterChart2";
+import StackedBarChart from "~/components/Charts/ApexCharts/StackedBarChart";
 
 const ApexChart = () => {
   return (

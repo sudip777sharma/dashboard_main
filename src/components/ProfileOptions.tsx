@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 
 import { LuUser } from "react-icons/lu";
 import { RiSettings5Line } from "react-icons/ri";

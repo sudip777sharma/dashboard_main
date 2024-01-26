@@ -4,12 +4,21 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 
+type eventDetailType = {
+  id: string;
+  title: string;
+  start: string;
+  end: string;
+  backgroundColor: string;
+  borderColor: string;
+};
+
 const MyEvents: React.FC = () => {
-  const [events, setEvents] = useState([]);
+  const [, setEvents] = useState<eventDetailType[]>();
 
   useEffect(() => {
     // Fetch events from your API or set default events
-    const initialEvents = [
+    const initialEvents: eventDetailType[] = [
       {
         id: "1",
         title: "Event 1",
@@ -23,15 +32,15 @@ const MyEvents: React.FC = () => {
     setEvents(initialEvents);
   }, []);
 
-  const handleDateClick = (info) => {
+  const handleDateClick = () => {
     // alert("Clicked on: " + info.dateStr);
     // alert("Coordinates: " + info.jsEvent.pageX + "," + info.jsEvent.pageY);
     // alert("Current view: " + info.view.type);
   };
 
   return (
-    <div className="border-[1px] border-[#464B62] w-full h-full rounded-lg p-4">
-      <h1 className="text-2xl font-semibold p-2">Events</h1>
+    <div className="h-full w-full rounded-lg border-[1px] border-[#464B62] p-4">
+      <h1 className="p-2 text-2xl font-semibold">Events</h1>
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         headerToolbar={{
@@ -39,7 +48,7 @@ const MyEvents: React.FC = () => {
           center: "title",
           right: "dayGridMonth,timeGridWeek,timeGridDay",
         }}
-        dateClick={(info) => handleDateClick(info)}
+        dateClick={() => handleDateClick()}
         events={[
           { title: "event 1", date: "2023-11-01" },
           { title: "event 2", date: "2023-11-02" },

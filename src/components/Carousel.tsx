@@ -4,20 +4,6 @@ import Image from "next/image";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-interface settingsType {
-  dots?: boolean;
-  arrows?: boolean;
-  infinite?: boolean;
-  speed?: number;
-  slidesToShow?: number;
-  slidesToScroll?: number;
-  autoplay?: boolean;
-  autoplaySpeed?: number;
-  prevArrow?: React.ReactNode;
-  nextArrow?: React.ReactNode;
-  // appendDots?: (dots: React.ReactNode) => React.ReactNode;
-}
-
 const Carousel = () => {
   const items = [
     {
@@ -52,7 +38,7 @@ const Carousel = () => {
     },
   ];
 
-  const settings: settingsType = {
+  const settings = {
     dots: true,
     arrows: false,
     infinite: true,
@@ -61,20 +47,18 @@ const Carousel = () => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
-    prevArrow: false,
-    nextArrow: false,
-    // appendDots: (dots) => (
-    //   <div
-    //     style={{
-    //       position: "absolute",
-    //       top: 10,
-    //       right: 10,
-    //       width: "fit-content",
-    //     }}
-    //   >
-    //     <ul style={{ listStyle: "none", padding: 0 }}>{dots}</ul>
-    //   </div>
-    // ),
+    appendDots: (dots: React.ReactNode) => (
+      <div
+        style={{
+          position: "absolute",
+          top: 10,
+          right: 10,
+          width: "fit-content",
+        }}
+      >
+        <ul style={{ listStyle: "none", padding: 0 }}>{dots}</ul>
+      </div>
+    ),
   };
 
   return (

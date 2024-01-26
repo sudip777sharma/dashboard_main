@@ -1,6 +1,7 @@
 import React from "react";
 
 import dynamic from "next/dynamic"; // Import dynamic from next/dynamic
+import { type ApexOptions } from "apexcharts";
 
 const ApexChartNoSSR = dynamic(() => import("react-apexcharts"), {
   ssr: false, // Set ssr to false to ensure it only renders on the client-side
@@ -71,7 +72,7 @@ const RadialBarChart = () => {
       </div>
       <div className="h-[70vh] w-full flex-col items-center justify-center p-1 md:p-4">
         <ApexChartNoSSR
-          options={options}
+          options={options as ApexOptions}
           series={series}
           type="radialBar"
           className="h-full w-full"

@@ -74,6 +74,7 @@ const Notifications = () => {
                     width={10}
                     src={`/${notification.userImage}`}
                     // src='avatar.png'
+                    alt="notifications pic"
                     className="h-10 w-10 rounded-full object-cover"
                   />
                 </span>

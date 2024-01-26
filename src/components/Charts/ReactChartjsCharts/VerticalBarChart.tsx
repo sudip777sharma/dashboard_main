@@ -1,29 +1,32 @@
 import React, { useState } from "react";
-import { de } from "date-fns/locale";
-import { format, parseISO } from "date-fns";
+// import { de } from "date-fns/locale";
+// import { format, parseISO } from "date-fns";
 import "chartjs-adapter-date-fns";
 
-import Datepicker from "react-tailwindcss-datepicker";
+import Datepicker, { type DateValueType } from "react-tailwindcss-datepicker";
 
 import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJs,
   Tooltip,
+  LinearScale,
   Legend,
   BarElement,
   type ChartOptions,
 } from "chart.js";
 
-ChartJs.register(BarElement, Tooltip, Legend);
+ChartJs.register(BarElement, LinearScale, Tooltip, Legend);
 
 const VerticalBarChart: React.FC = () => {
-  const [value, setValue] = useState({
+  const [value, setValue] = useState<DateValueType>({
     startDate: new Date(),
     endDate: new Date(),
   });
 
-  const handleValueChange = (newValue) => {
-    setValue(newValue);
+  const handleValueChange = (value: DateValueType) => {
+    if (value !== null && typeof value !== "undefined") {
+      setValue(value);
+    }
   };
 
   const data = {
@@ -54,36 +57,31 @@ const VerticalBarChart: React.FC = () => {
       },
     ],
   };
-  const options: ChartOptions = {
+  const options: ChartOptions<"bar"> = {
     responsive: true,
     maintainAspectRatio: false,
-    adapters: {
-      date: {
-        locale: de,
-      },
-    },
     scales: {
       x: {
         type: "time",
         min: "2023-12-07",
         max: "2023-12-19",
-        barThickness: 10,
+        // barThickness: 10,
         time: {
           unit: "day",
-          parser: (value) => {
-            // Custom parsing using date-fns
-            return parseISO(value);
-          },
-          tooltipFormat: "dd/MM",
-          formatter: (time) => {
-            // Custom formatting using date-fns
-            return format(time, "dd/MM");
-          },
+          // parser: (value) => {
+          //   // Custom parsing using date-fns
+          //   return parseISO(value);
+          // },
+          // tooltipFormat: "dd/MM",
+          // formatter: (time) => {
+          //   // Custom formatting using date-fns
+          //   return format(time, "dd/MM");
+          // },
         },
         position: "bottom",
         ticks: {
           color: "#9196b2",
-          callback: (value, index, values) => {
+          callback: (value) => {
             // Custom label formatting using date-fns with "/" separator
             const date = new Date(value);
             const day = date.getDate().toString();
@@ -94,7 +92,7 @@ const VerticalBarChart: React.FC = () => {
         grid: {
           color: "#646880",
         },
-        beginAtZero: true,
+        // beginAtZero: true,
       },
       y: {
         min: 0,

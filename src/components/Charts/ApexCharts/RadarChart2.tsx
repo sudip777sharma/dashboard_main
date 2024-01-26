@@ -1,6 +1,7 @@
 import React from "react";
 
 import dynamic from "next/dynamic";
+import { type ApexOptions } from "apexcharts";
 
 const ApexChartNoSSR = dynamic(() => import("react-apexcharts"), {
   ssr: false,
@@ -85,7 +86,7 @@ const RadarChart2 = () => {
       </div>
       <div className="h-[70vh] w-full flex-col items-center justify-center p-1 md:p-4">
         <ApexChartNoSSR
-          options={options}
+          options={options as ApexOptions}
           series={options.series}
           type="radar"
           className="h-full w-full"

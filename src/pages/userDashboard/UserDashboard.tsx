@@ -1,7 +1,7 @@
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
-import SingleHorizontalBar from "~/components/Charts/SingleHorizontalBar";
+import SingleHorizontalBar from "~/components/Charts/ApexCharts/SingleHorizontalBar";
 import { api } from "~/utils/api";
 
 const UserDashboard = () => {
@@ -11,8 +11,6 @@ const UserDashboard = () => {
   const {
     data: enrolledCourseList,
     isLoading,
-    isError,
-    error,
   } = api.courseListData.getCoursesEnrolledByUser.useQuery({
     userId: sessionData?.user.id ?? "",
   });

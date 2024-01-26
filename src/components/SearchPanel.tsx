@@ -127,7 +127,7 @@ const SearchPanel = () => {
         </span>
       </div>
       <div className="grid overflow-auto h-[25.9rem] md:h-[30rem] w-full grid-cols-1 gap-2 md:gap-0 md:grid-cols-2 items-center justify-center p-6 px-2 md:px-10 cursor-pointer">
-        {SearchPanelItems.map((item, index) => (
+        {SearchPanelItems.map((item) => (
           <div className="flex flex-col gap-0 md:gap-3 p-1 md:p-4" key={item.title}>
             <h1 className="text-xs text-[#6B7088]">
               {item.title.toUpperCase()}

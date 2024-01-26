@@ -1,12 +1,10 @@
 import React, { useEffect, useContext, useRef } from "react";
 import { SidebarContext } from "~/contexts/SidebarContext";
-import { ThemeContext } from "~/contexts/ThemeContext";
 
 type props = {
   children: React.ReactNode;
 };
 const SidebarTemplate = ({ children }: props) => {
-  const themeContext = useContext(ThemeContext);
   const sidebarContext = useContext(SidebarContext);
   const popupBoxRef = useRef<HTMLDivElement | null>(null);
   const onClickOutsideSearchPanel = (
@@ -27,7 +25,7 @@ const SidebarTemplate = ({ children }: props) => {
     return () => {
       document.removeEventListener("keydown", handleEscKey);
     };
-  }, []);
+  }, [sidebarContext]);
   // if(!sidebarContext?.isSidebarOpen) return null;
   return (
     <>

@@ -1,5 +1,5 @@
 import React from "react";
-import ProjectTable from "~/components/Tables/projectTable";
+import ProjectTable from "~/components/Tables/ProjectTable";
 
 const tableData = () => {
   return (

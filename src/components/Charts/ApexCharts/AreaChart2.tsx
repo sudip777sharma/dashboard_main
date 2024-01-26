@@ -1,3 +1,191 @@
+import React, { useState } from "react";
+import dynamic from "next/dynamic";
+import { type ApexOptions } from "apexcharts";
+import Datepicker, { type DateValueType } from "react-tailwindcss-datepicker";
+// import MyDatePicker from "../MyDatePicker";
+
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
+  ssr: false,
+});
+
+const generateDayWiseTimeSeries = (
+  baseDate: number,
+  count: number,
+  yrange: { min: number; max: number }
+) => {
+  let i = 0;
+  const series = [];
+  while (i < count) {
+    const x = baseDate;
+    const y =
+      Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
+
+    series.push([x, y]);
+    baseDate += 86400000;
+    i++;
+  }
+  return series;
+};
+
+const AreaChart2 = () => {
+  const [value, setValue] = useState<DateValueType>({
+    startDate: new Date(),
+    endDate: new Date(),
+  });
+
+  const handleValueChange = (value: DateValueType) => {
+    if (value !== null && typeof value !== "undefined") {
+      setValue(value);
+    }
+  };
+
+  const options: ApexOptions = {
+    series: [
+      {
+        name: "Sales",
+        data: generateDayWiseTimeSeries(
+          new Date("11 Feb 2017 GMT").getTime(),
+          13,
+          {
+            min: 0,
+            max: 100,
+          }
+        ),
+      },
+      {
+        name: "Clicks",
+        data: generateDayWiseTimeSeries(
+          new Date("11 Feb 2017 GMT").getTime(),
+          13,
+          {
+            min: 0,
+            max: 100,
+          }
+        ),
+      },
+      {
+        name: "Visits",
+        data: generateDayWiseTimeSeries(
+          new Date("11 Feb 2017 GMT").getTime(),
+          13,
+          {
+            min: 0,
+            max: 100,
+          }
+        ),
+      },
+    ],
+    chart: {
+      type: "area",
+      toolbar: {
+        show: false,
+      },
+      zoom: {
+        enabled: true,
+      },
+      stacked: true,
+    },
+    colors: ["#AB7EFD", "#B992FE", "#E0CFFE"],
+    dataLabels: {
+      enabled: false,
+    },
+    stroke: {
+      curve: "straight",
+      width: 0,
+    },
+    fill: {
+      type: "solid",
+      colors: ["#AB7EFD", "#B992FE", "#E0CFFE"], // Set your desired fill color
+    },
+    legend: {
+      position: "top",
+      horizontalAlign: "left",
+      labels: {
+        colors: "#555971",
+      },
+    },
+    xaxis: {
+      type: "datetime",
+      axisBorder: {
+        show: false, // Hide x-axis border
+      },
+      axisTicks: {
+        show: false, // Hide x-axis ticks
+      },
+      labels: {
+        style: {
+          colors: "#646880",
+          fontSize: "14px",
+        },
+      },
+    },
+    yaxis: {
+      tooltip: {
+        enabled: false,
+      },
+      labels: {
+        style: {
+          colors: "#646880",
+          fontSize: "14px",
+        },
+      },
+    },
+    grid: {
+      borderColor: "#646880",
+      // strokeDashArray: 1,
+      xaxis: {
+        lines: {
+          show: true,
+        },
+      },
+      yaxis: {
+        lines: {
+          show: true,
+        },
+      },
+    },
+    tooltip: {
+      theme: "dark",
+      shared: false, // Disable shared tooltip
+    },
+  };
+
+  return (
+    <div className={`w-full`}>
+      <div className={`flex items-center justify-between p-4`}>
+        <div className={`flex-col`}>
+          <h1 className="text-2xl">Stacked Area Chart</h1>
+          <h1>Commercial networks</h1>
+        </div>
+        <div className={`rounded-lg border-[1px] border-[#454960]`}>
+          {/* <MyDatePicker /> */}
+          <Datepicker
+            asSingle={true}
+            useRange={false}
+            primaryColor={"blue"}
+            value={value}
+            onChange={handleValueChange}
+          />
+        </div>
+      </div>
+      <div className="h-[70vh] w-full flex-col items-center justify-center p-1 md:p-4">
+        <ReactApexChart
+          options={options}
+          series={options.series}
+          type="area"
+          className="h-full w-full"
+          height={"100%"}
+          width={"100%"}
+        />
+      </div>
+    </div>
+  );
+};
+
+export default AreaChart2;
+
+
+
 // import React, { useState } from "react";
 // import { Line } from "react-chartjs-2";
 // import { de } from "date-fns/locale";
@@ -486,198 +674,3 @@
 // };
 
 // export default AreaChart2;
-
-import React, { useState } from "react";
-import dynamic from "next/dynamic";
-import { type ApexOptions } from "apexcharts";
-import Datepicker, { DateValueType } from "react-tailwindcss-datepicker";
-import MyDatePicker from "../MyDatePicker";
-
-const ReactApexChart = dynamic(() => import("react-apexcharts"), {
-  ssr: false,
-});
-
-const generateDayWiseTimeSeries = (
-  baseDate: number,
-  count: number,
-  yrange: { min: number; max: number }
-) => {
-  let i = 0;
-  let series = [];
-  while (i < count) {
-    const x = baseDate;
-    const y =
-      Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
-
-    series.push([x, y]);
-    baseDate += 86400000;
-    i++;
-  }
-  return series;
-};
-
-const AreaChart2 = () => {
-  const [value, setValue] = useState<DateValueType>({
-    startDate: new Date(),
-    endDate: new Date(),
-  });
-
-  const handleValueChange = (
-    newValue: DateValueType,
-    e?: HTMLInputElement | null | undefined
-  ) => {
-    setValue((prevState) => {
-      if (newValue !== null) {
-        return {
-          ...prevState,
-          startDate: newValue,
-        };
-      }
-      return prevState;
-    });
-  };
-
-  const options: ApexOptions = {
-    series: [
-      {
-        name: "Sales",
-        data: generateDayWiseTimeSeries(
-          new Date("11 Feb 2017 GMT").getTime(),
-          13,
-          {
-            min: 0,
-            max: 100,
-          }
-        ),
-      },
-      {
-        name: "Clicks",
-        data: generateDayWiseTimeSeries(
-          new Date("11 Feb 2017 GMT").getTime(),
-          13,
-          {
-            min: 0,
-            max: 100,
-          }
-        ),
-      },
-      {
-        name: "Visits",
-        data: generateDayWiseTimeSeries(
-          new Date("11 Feb 2017 GMT").getTime(),
-          13,
-          {
-            min: 0,
-            max: 100,
-          }
-        ),
-      },
-    ],
-    chart: {
-      type: "area",
-      toolbar: {
-        show: false,
-      },
-      zoom: {
-        enabled: true,
-      },
-      stacked: true,
-    },
-    colors: ["#AB7EFD", "#B992FE", "#E0CFFE"],
-    dataLabels: {
-      enabled: false,
-    },
-    stroke: {
-      curve: "straight",
-      width: 0,
-    },
-    fill: {
-      type: "solid",
-      colors: ["#AB7EFD", "#B992FE", "#E0CFFE"], // Set your desired fill color
-    },
-    legend: {
-      position: "top",
-      horizontalAlign: "left",
-      labels: {
-        colors: "#555971",
-      },
-    },
-    xaxis: {
-      type: "datetime",
-      axisBorder: {
-        show: false, // Hide x-axis border
-      },
-      axisTicks: {
-        show: false, // Hide x-axis ticks
-      },
-      labels: {
-        style: {
-          colors: "#646880",
-          fontSize: "14px",
-        },
-      },
-    },
-    yaxis: {
-      tooltip: {
-        enabled: false,
-      },
-      labels: {
-        style: {
-          colors: "#646880",
-          fontSize: "14px",
-        },
-      },
-    },
-    grid: {
-      borderColor: "#646880",
-      // strokeDashArray: 1,
-      xaxis: {
-        lines: {
-          show: true,
-        },
-      },
-      yaxis: {
-        lines: {
-          show: true,
-        },
-      },
-    },
-    tooltip: {
-      theme: "dark",
-      shared: false, // Disable shared tooltip
-    },
-  };
-
-  return (
-    <div className={`w-full`}>
-      <div className={`flex items-center justify-between p-4`}>
-        <div className={`flex-col`}>
-          <h1 className="text-2xl">Stacked Area Chart</h1>
-          <h1>Commercial networks</h1>
-        </div>
-        <div className={`rounded-lg border-[1px] border-[#454960]`}>
-          {/* <MyDatePicker /> */}
-          <Datepicker
-            asSingle={true}
-            useRange={false}
-            primaryColor={"blue"}
-            value={value}
-            onChange={handleValueChange}
-          />
-        </div>
-      </div>
-      <div className="h-[70vh] w-full flex-col items-center justify-center p-1 md:p-4">
-        <ReactApexChart
-          options={options}
-          series={options.series}
-          type="area"
-          className="h-full w-full"
-          height={"100%"}
-          width={"100%"}
-        />
-      </div>
-    </div>
-  );
-};
-
-export default AreaChart2;

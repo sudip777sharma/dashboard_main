@@ -5,10 +5,12 @@ import {
   ArcElement,
   Tooltip,
   Legend,
+  LinearScale,
+  type ChartOptions,
 } from "chart.js";
 import { PolarArea } from "react-chartjs-2";
 
-ChartJS.register(RadialLinearScale, ArcElement, Tooltip, Legend);
+ChartJS.register(RadialLinearScale, LinearScale, ArcElement, Tooltip, Legend);
 
 const PolarChart: React.FC = () => {
   const data = {
@@ -30,7 +32,7 @@ const PolarChart: React.FC = () => {
     ],
   };
 
-  const options = {
+  const options: ChartOptions<"polarArea"> = {
     responsive: true,
     maintainAspectRatio: false,
     elements: {
@@ -39,13 +41,6 @@ const PolarChart: React.FC = () => {
       },
       arc: {
         borderWidth: 0,
-      },
-    },
-    scale: {
-      min: 0,
-      max: 10,
-      ticks: {
-        stepSize: 1,
       },
     },
     plugins: {

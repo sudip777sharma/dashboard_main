@@ -3,9 +3,9 @@ import { PopupBoxContext } from "~/contexts/PopupBoxContext";
 // import ImageSlider from "./Slider";
 import Carousel from "./Carousel";
 import { MdOutlineMail, MdOutlinePayment } from "react-icons/md";
-import RevenueChart from "./Charts/RevenueChart";
-import EarningChart from "./Charts/EarningChart";
-import StorkedGaugeChart from "./Charts/StrokedGaugeChart";
+import RevenueChart from "./Charts/ApexCharts/RevenueChart";
+import EarningChart from "./Charts/ApexCharts/EarningChart";
+import StorkedGaugeChart from "./Charts/ApexCharts/StrokedGaugeChart";
 import Icon from "./Icon";
 import {
   FaCircleHalfStroke,
@@ -18,22 +18,19 @@ import { IoPeopleSharp, IoTimeOutline } from "react-icons/io5";
 import { IoIosArrowDown, IoIosArrowUp, IoMdTime } from "react-icons/io";
 import { CiCircleCheck, CiWarning } from "react-icons/ci";
 import { TbBrandPaypal, TbClick } from "react-icons/tb";
-import SingleHorizontalBar from "./Charts/SingleHorizontalBar";
+import SingleHorizontalBar from "./Charts/ApexCharts/SingleHorizontalBar";
 // import { type IconType } from "react-icons/lib";
 import Image from "next/image";
-import StackedBarChart2 from "./Charts/StackedBarChart2";
-import { IconType } from "react-icons/lib";
+import StackedBarChart2 from "./Charts/ApexCharts/StackedBarChart2";
+import { type IconType } from "react-icons/lib";
 import { AiOutlineStop } from "react-icons/ai";
 import { LiaNetworkWiredSolid } from "react-icons/lia";
 import { LuExternalLink } from "react-icons/lu";
 import { RiAdvertisementLine } from "react-icons/ri";
-import ProjectTable from "./Tables/projectTable";
+import ProjectTable from "./Tables/ProjectTable";
 
 import dynamic from "next/dynamic";
-import ReactBigCalendar from "./Events/ReactBigCalender";
-import ReactCalendar from "./Events/ReactCalender";
 import MyEvents from "./Events/MyEvents";
-import ImageSlider from "./Slider";
 
 const DynamicClientsMap = dynamic(() => import("./Maps/ClientsMap"), {
   loading: () => <p>Loading map...</p>,
@@ -187,7 +184,11 @@ const countriesSaleDetail: countriesSaleDetailType[] = [
   },
 ];
 
-function darkenHexColorWithOpacity(hex, factor, opacity) {
+function darkenHexColorWithOpacity(
+  hex: string,
+  factor: number,
+  opacity: number
+) {
   // Ensure the factor is between 0 and 1
   factor = Math.min(1, Math.max(0, factor));
 
@@ -225,7 +226,7 @@ const Dashboard = () => {
     return () => {
       document.removeEventListener("keydown", handleCtrlK);
     };
-  }, []);
+  }, [popupBoxContext]);
 
   return (
     <>
@@ -461,7 +462,7 @@ const Dashboard = () => {
               <p>Monthly Sales Overview</p>
             </div>
             <div className="flex flex-col gap-4">
-              {countriesSaleDetail.map((detail, index) => {
+              {countriesSaleDetail.map((detail) => {
                 return (
                   <div
                     key={detail.country}
@@ -555,7 +556,7 @@ const Dashboard = () => {
               <p>8.52k Social Visitors</p>
             </div>
             <div className="flex flex-col gap-4">
-              {monthlyCampaignState.map((detail, index) => {
+              {monthlyCampaignState.map((detail) => {
                 return (
                   <div
                     key={detail.name}
@@ -609,7 +610,7 @@ const Dashboard = () => {
               <p>38.4k Visitors</p>
             </div>
             <div className="flex flex-col gap-4">
-              {SourceVisits.map((detail, index) => {
+              {SourceVisits.map((detail) => {
                 return (
                   <div
                     key={detail.name}

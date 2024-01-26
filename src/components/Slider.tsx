@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 
 interface SliderItem {
   title: string;
-  details: { [key: string]: string };
+  details: Record<string, string>;
   imageSrc?: string;
 }
 
@@ -41,7 +41,7 @@ const sliderData: SliderItem[] = [
 ];
 
 const ImageSlider: React.FC = () => {
-  const [items, setItems] = useState(sliderData);
+  const [items] = useState(sliderData);
   const [currentItem, setCurrentItem] = useState(0);
 
   const nextItem = () => {
@@ -57,7 +57,7 @@ const ImageSlider: React.FC = () => {
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  });
 
   return (
     <div
@@ -69,7 +69,7 @@ const ImageSlider: React.FC = () => {
         }}
         className={`flex w-full gap-10 p-6 transition duration-500 ease-out`}
       >
-        {items.map((item, index) => (
+        {items.map((item) => (
           <div
             key={item.title}
             className="flex min-w-[35.5rem] items-center justify-between "
@@ -95,7 +95,7 @@ const ImageSlider: React.FC = () => {
             </div>
             <div>
               <Image
-                src={item.imageSrc}
+                src={item.imageSrc ?? ""}
                 alt={item.title}
                 width={190}
                 height={190}

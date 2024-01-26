@@ -1,4 +1,3 @@
-import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import React from "react";
 import { api } from "~/utils/api";
@@ -6,28 +5,12 @@ import { api } from "~/utils/api";
 const Course = () => {
   const router = useRouter();
   const { courseId } = router.query;
-  const { data: sessionData } = useSession();
-  const utils = api.useContext();
   const {
     data: courseData,
     isLoading,
-    isError,
-    error,
   } = api.courseListData.getCourseDataByCourseId.useQuery({
     courseId: courseId as string,
   });
-  const disenrollCourse = api.courseListData.disenrollCourseByuser.useMutation({
-    onSettled: async () => {
-      console.log("sucessfully disenrolled");
-      await utils.courseListData.getCoursesEnrolledByUser.invalidate();
-    },
-  });
-  const handleDisenrollCourse = () => {
-    disenrollCourse.mutate({
-      courseId: courseId as string,
-      userId: sessionData?.user.id ?? "",
-    });
-  };
   if (isLoading) {
     return (
       <div className="px-6">

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+import { MapContainer, Marker, TileLayer, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import { type LatLngExpression } from "leaflet";
+import { type LatLngTuple} from "leaflet";
 import CustomMarker from "./CustomMarker";
 
 import icon from "./constants";
-const centerOfMyloc: LatLngExpression = [22, 83];
+const centerOfMyloc: LatLngTuple = [22, 83];
 
 const clientsData = [
   {
@@ -95,59 +95,37 @@ const clientsData = [
   },
 ];
 
-function LocationMarker({ position }) {
-  //   const [position, setPosition] = useState(null);
-  const [bbox, setBbox] = useState([]);
-
+function LocationMarker({ position }: { position: LatLngTuple }) {
   const map = useMap();
-
-  // useEffect(() => {
-  //   map.locate().on("locationfound", function (e) {
-  //     setPosition([e.latlng]);
-  //     map.flyTo(e.latlng, map.getZoom());
-  //     const radius = e.accuracy;
-  //     const circle = L.circle(e.latlng, radius);
-  //     circle.addTo(map);
-  //     setBbox(e.bounds.toBBoxString().split(","));
-  //   });
-  // }, [map]);
   useEffect(() => {
     map.flyTo(position, map.getZoom());
-  }, [position]);
+  }, [map, position]);
 
   return position === null ? null : (
     <Marker position={position} icon={icon}>
-      <Popup>
-        You are here. <br />
-        Map bbox: <br />
-        <b>Southwest lng</b>: {bbox[0]} <br />
-        <b>Southwest lat</b>: {bbox[1]} <br />
-        <b>Northeast lng</b>: {bbox[2]} <br />
-        <b>Northeast lat</b>: {bbox[3]}
-      </Popup>
     </Marker>
-    // <CustomMarker
-    //   position={position}
-    //   country={'client'}
-    // />
   );
 }
 const ClientsMap = () => {
-  const [mapUrl, setMapUrl] = useState(
+  const [mapUrl] = useState(
     "https://api.maptiler.com/maps/dataviz-dark/{z}/{x}/{y}.png?key=FD8nzx8XXXjgvg9kmHx8"
   );
-  const [position, setPosition] = useState([22, 85]);
+  const [position, setPosition] = useState<LatLngTuple>([22, 85]);
   return (
     <div className="flex rounded-lg border-[1.5px] border-[#484D64]">
       <div className="custom-scrollbar z-0 h-[80vh] w-56 cursor-pointer overflow-auto rounded-lg">
-        <h1 className="sticky top-0 py-2 px-4 text-2xl font-semibold backdrop-blur-lg">
+        <h1 className="sticky top-0 px-4 py-2 text-2xl font-semibold backdrop-blur-lg">
           Clients
         </h1>
         <div className="">
           {clientsData.map((client) => {
             return (
               <h1
-                className={`px-4 py-2 hover:bg-[#4441657a] hover:text-white ${(client.lat === position[0] && client.long === position[1]) ? 'bg-[#6153ff] text-white' : ''}`}
+                className={`px-4 py-2 hover:bg-[#4441657a] hover:text-white ${
+                  client.lat === position[0] && client.long === position[1]
+                    ? "bg-[#6153ff] text-white"
+                    : ""
+                }`}
                 onClick={() => setPosition([client.lat, client.long])}
                 key={client.name}
               >
@@ -173,7 +151,7 @@ const ClientsMap = () => {
         ]}
       >
         <TileLayer url={mapUrl} noWrap={true} />
-        {clientsData.map((client: any) => (
+        {clientsData.map((client) => (
           <CustomMarker
             key={client.name}
             position={[client.lat, client.long]}

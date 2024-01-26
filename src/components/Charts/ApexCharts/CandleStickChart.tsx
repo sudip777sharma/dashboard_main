@@ -1,21 +1,26 @@
 import React, { useState } from "react";
-import Datepicker from "react-tailwindcss-datepicker";
+import Datepicker, {type DateValueType } from "react-tailwindcss-datepicker";
 
 import dynamic from "next/dynamic"; // Import dynamic from next/dynamic
+import { type ApexOptions } from "apexcharts";
 const ApexChartNoSSR = dynamic(() => import("react-apexcharts"), {
   ssr: false, // Set ssr to false to ensure it only renders on the client-side
 });
 
 const CandleStickChart = () => {
-  const [value, setValue] = useState({
+  const [value, setValue] = useState<DateValueType>({
     startDate: new Date(),
     endDate: new Date(),
   });
 
-  const handleValueChange = (newValue) => {
-    setValue(newValue);
+  const handleValueChange = (
+    value: DateValueType
+  ) => {
+    if (value !== null && typeof value !== "undefined") {
+      setValue(value);
+    }
   };
-  const [chartData, setChartData] = useState({
+  const [chartData] = useState({
     series: [
       {
         data: [
@@ -129,7 +134,7 @@ const CandleStickChart = () => {
       </div>
       <div className="h-[70vh] w-full flex-col items-center justify-center p-1 md:p-4">
         <ApexChartNoSSR
-          options={chartData.options}
+          options={chartData.options as ApexOptions}
           series={chartData.series}
           type="candlestick"
           className="h-full w-full"

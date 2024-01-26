@@ -1,12 +1,13 @@
 import React from "react";
 import dynamic from "next/dynamic";
+import { type ApexOptions } from "apexcharts";
 
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
 
 const StorkedGaugeChart = () => {
-  const options = {
+  const options: ApexOptions = {
     series: [85],
     chart: {
       type: "radialBar",
@@ -23,7 +24,7 @@ const StorkedGaugeChart = () => {
           size: "67%",
         },
         dataLabels: {
-          showOn: "always",
+          show: true,
           name: {
             offsetY: -10,
             show: true,
@@ -38,22 +39,22 @@ const StorkedGaugeChart = () => {
         },
       },
     },
-    maintainAspectRatio: false,
+    // maintainAspectRatio: false,
     fill: {
       type: "gradient",
       gradient: {
         shade: "dark",
         type: "horizontal",
-        colorStops: [
-          {
-            offset: 0,
-            color: "#474685",
-          },
-          {
-            offset: 40,
-            color: "#7367F0",
-          },
-        ],
+        // colorStops: [
+        //   {
+        //     offset: 0,
+        //     color: "#474685",
+        //   },
+        //   {
+        //     offset: 40,
+        //     color: "#7367F0",
+        //   },
+        // ],
       },
     },
     stroke: {

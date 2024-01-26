@@ -7,14 +7,16 @@ import {
   LineElement,
   Tooltip,
   Legend,
+  type ChartOptions,
 } from "chart.js";
+
 ChartJS.register(LinearScale, PointElement, LineElement, Tooltip, Legend);
 
-const ScatterChart2: React.FC = () => {
+const ScatterChart: React.FC = () => {
   const data = {
     datasets: [
       {
-        label: "Angular",
+        label: "iPhone",
         data: [
           { x: 72, y: 225 },
           { x: 81, y: 270 },
@@ -33,16 +35,11 @@ const ScatterChart2: React.FC = () => {
           { x: 127, y: 340 },
           { x: 133, y: 330 },
         ],
-        backgroundColor: "#FF9F43",
-        pointRadius: 7,
-        pointBorderWidth: 1,
-        pointBorderColor: "white",
-        animation: {
-          duration: 10,
-        },
+        backgroundColor: "#836AF9",
+        pointRadius: 5,
       },
       {
-        label: "Vue",
+        label: "Samsung Note",
         data: [
           { x: 13, y: 155 },
           { x: 13, y: 95 },
@@ -60,16 +57,11 @@ const ScatterChart2: React.FC = () => {
           { x: 61, y: 165 },
           { x: 67, y: 225 },
         ],
-        backgroundColor: "#836AF9",
-        pointRadius: 7,
-        pointBorderWidth: 1,
-        pointBorderColor: "white",
-        animation: {
-          duration: 10,
-        },
+        backgroundColor: "#FF9F43",
+        pointRadius: 5,
       },
       {
-        label: "React",
+        label: "OnePlus",
         data: [
           { x: 70, y: 195 },
           { x: 72, y: 270 },
@@ -87,43 +79,12 @@ const ScatterChart2: React.FC = () => {
           { x: 111, y: 250 },
         ],
         backgroundColor: "#28C76F",
-        pointRadius: 7,
-        pointBorderWidth: 1,
-        pointBorderColor: "white",
-        animation: {
-          duration: 10,
-        },
+        pointRadius: 5,
       },
     ],
   };
-  function handleHover(evt, item, legend) {
-    legend?.chart.data.datasets.forEach((dataset, index, datasets) => {
-      datasets[index].backgroundColor =
-        index === item.datasetIndex ||
-        datasets[index].backgroundColor.length === 9
-          ? datasets[index].backgroundColor
-          : datasets[index].backgroundColor + "4D";
-      datasets[index].pointBorderColor =
-        index === item.datasetIndex ||
-        datasets[index].pointBorderColor.length === 9
-          ? datasets[index].pointBorderColor
-          : "#ffffff1f";
-      // datasets[index].pointBorderColor = "#ffffff1f";
-    });
-    legend.chart.update();
-  }
-  function handleLeave(evt, item, legend) {
-    legend?.chart.data.datasets.forEach((dataset, index, datasets) => {
-      datasets[index].backgroundColor =
-        datasets[index].backgroundColor.length === 9
-          ? datasets[index].backgroundColor.slice(0, -2)
-          : datasets[index].backgroundColor;
 
-      datasets[index].pointBorderColor = "white";
-    });
-    legend.chart.update();
-  }
-  const options = {
+  const options: ChartOptions<"scatter"> = {
     responsive: true,
     maintainAspectRatio: false,
     scales: {
@@ -152,8 +113,6 @@ const ScatterChart2: React.FC = () => {
     },
     plugins: {
       legend: {
-        onHover: handleHover,
-        onLeave: handleLeave,
         labels: {
           color: "white",
           boxWidth: 15,
@@ -180,4 +139,4 @@ const ScatterChart2: React.FC = () => {
   );
 };
 
-export default ScatterChart2;
+export default ScatterChart;
