@@ -8,7 +8,7 @@ import { FaMapMarkerAlt } from 'react-icons/fa';
 
 interface CustomMarkerProps {
     position: [number, number];
-    country: unknown;
+    country: string;
 }
 
 const customMarkerIcon = new Icon({
